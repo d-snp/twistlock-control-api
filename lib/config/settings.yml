@@ -1,0 +1,6 @@
+development:
+    twistlock_control:
+        database_name: twistlock_control_dev
+test:
+    twistlock_control:
+        database_name: twistlock_control_test
