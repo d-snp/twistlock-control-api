@@ -1,17 +1,42 @@
 require 'ddp/server/rethinkdb'
-require 'twistlock-control'
+require 'twistlock_control'
 
 # A simple messaging API
-class RotterdamAPI < DDP::Server::RethinkDB::API
+class RotterdamAPI < DDP::Server::API
+	include DDP::Server::RethinkDB::Helpers
+
+	def initialize
+		TwistlockControl.configure(database_name: 'twistlock_control_dev')
+		super
+	end
+
+	def new_connection
+		TwistlockControl.new_connection
+	end
+
 	# Define a module named Collections that exposes subscribable rethinkdb queries
 	module Collections
-		extend TwistlockControl::Collections
+		def provisioners
+			TwistlockControl::Collections.provisioners
+		end
+
+		def services
+			TwistlockControl::Collections.services
+		end
+
+		def service_instances
+			TwistlockControl::Collections.service_instances
+		end
+
+		def container_instances
+			TwistlockControl::Collections.container_instances
+		end
 	end
 
 	# Define a module named RPC that exposes RPC methods
 	module RPC
 		def add_provisioner(properties)
-			TwistlockControl::Actions::Provisioner.add(properties)
+			TwistlockControl::Actions::Provisioner.add(properties).serialize
 		end
 
 		def remove_provisioner(id)
@@ -20,12 +45,4 @@ class RotterdamAPI < DDP::Server::RethinkDB::API
 	end
 end
 
-config = {
-	connection_pool_size: 8,
-	connection_pool_timeout: 5,
-	host: 'localhost',
-	port: 28_015,
-	database: 'message'
-}
-
-run DDP::Server::RethinkDB::WebSocket.rack(RotterdamAPI, config)
+run DDP::Server::WebSocket.rack(RotterdamAPI)

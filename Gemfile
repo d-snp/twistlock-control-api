@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'ddp-server-rethinkdb', '>= 0.0.4'
+gem 'ddp-server-rethinkdb', '>= 0.1.2'
 gem 'twistlock-control', path: '../twistlock-control'
-gem 'passenger', '>= 5.0.2'
+gem 'passenger', '>= 5.0.4'
 
 group :development do
 	gem 'rubocop'

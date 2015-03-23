@@ -22,7 +22,7 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    celluloid-websocket (0.0.9)
+    celluloid-websocket (0.0.10)
       celluloid
       celluloid-io
       http
@@ -38,12 +38,11 @@ GEM
       gherkin (~> 2.12)
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.1.1)
-    ddp-server (0.0.5)
-      celluloid-websocket (~> 0.0.7)
-    ddp-server-rethinkdb (0.0.4)
-      celluloid-websocket (>= 0.0.9)
+    ddp-server (0.1.2)
+      celluloid-websocket (~> 0.0.10)
+    ddp-server-rethinkdb (0.1.2)
       connection_pool
-      ddp-server (>= 0.0.4)
+      ddp-server (>= 0.1.2)
       rethinkdb
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -98,7 +97,7 @@ GEM
       shellany (~> 0.0)
     parser (2.2.0.3)
       ast (>= 1.1, < 3.0)
-    passenger (5.0.2)
+    passenger (5.0.4)
       rack
       rake (>= 0.8.1)
     powerpack (0.1.0)
@@ -154,12 +153,12 @@ PLATFORMS
 
 DEPENDENCIES
   cucumber
-  ddp-server-rethinkdb (>= 0.0.4)
+  ddp-server-rethinkdb (>= 0.1.2)
   guard
   guard-cucumber
   guard-rspec
   guard-rubocop
-  passenger (>= 5.0.2)
+  passenger (>= 5.0.4)
   rspec
   rubocop
   twistlock-control!
