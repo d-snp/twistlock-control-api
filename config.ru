@@ -14,6 +14,8 @@ class RotterdamAPI < DDP::Server::API
 		TwistlockControl.new_connection
 	end
 
+	# The below api style is super lame. There's got to be a better way.
+
 	# Define a module named Collections that exposes subscribable rethinkdb queries
 	module Collections
 		def provisioners
